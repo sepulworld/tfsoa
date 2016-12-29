@@ -4,19 +4,18 @@ require 'yaml'
 require 'json'
 
 # Todo
-# Validate Assume role functions
+# Assume role function
 # http://docs.aws.amazon.com/sdkforruby/api/Aws/AssumeRoleCredentials.html
 
 # Add state to database function PUT endpoint
 # Once in database a /jobs/refresh_state.rb will handle updating state based
 # upon the source in s3
 
-# Setup Rakefile for activerecord migrations
-
-# Leverage sinatra/activerecord
-
 # docs
 # Base URI is /tfsoa
+
+class Tfstate < ActiveRecord::Base
+end
 
 class TerraformSOA < Sinatra::Base
 
@@ -38,6 +37,8 @@ class TerraformSOA < Sinatra::Base
   def self.add_tf_state_to_db(s3_bucket_key)
 
   end
+
+  # Need to refactor for JSON message inputk
   post '/add_tf_state/:arn/:s3_bucket_name/:s3_bucket_key' do
     role_credentials = assume_role(params['arn'])
     s3 = Aws::S3::Client.new(credentials: role_credentials)
@@ -45,4 +46,5 @@ class TerraformSOA < Sinatra::Base
                          key: params['s3_bucket_key'])
 
   end
+
 end

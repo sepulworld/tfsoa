@@ -1,1 +1,0 @@
-#load activerecord model here
