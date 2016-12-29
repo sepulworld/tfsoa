@@ -1,3 +1,4 @@
+require_relative 'lib/tfsoa.rb'
 require 'dashing'
 
 configure do
@@ -9,6 +10,11 @@ configure do
       # This method is run before accessing any resource.
     end
   end
+end
+
+# Map to API for adding states
+map "/tfsoa" do
+  run TerraformSOA.new
 end
 
 map Sinatra::Application.assets_prefix do
