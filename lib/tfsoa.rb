@@ -35,10 +35,10 @@ class TerraformSOA < Sinatra::Base
   end
 
   def self.add_tf_state_to_db(s3_bucket_key)
-
+    
   end
 
-  # Need to refactor for JSON message inputk
+  # Need to refactor for JSON message input, s3_bucket_key should be unique
   post '/add_tf_state/:arn/:s3_bucket_name/:s3_bucket_key' do
     role_credentials = assume_role(params['arn'])
     s3 = Aws::S3::Client.new(credentials: role_credentials)
