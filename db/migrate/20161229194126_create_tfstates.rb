@@ -4,6 +4,8 @@ class CreateTfstates < ActiveRecord::Migration[5.0]
       t.string :s3_bucket_uri
       t.string :s3_bucket_key
       t.string :role_arn
+      t.string :terraform_version
+      t.string :state_version
       t.text   :state_json
       t.timestamps
     end
