@@ -37,7 +37,15 @@ class TerraformSOA < Sinatra::Base
   end
 
   def extract_tf_version(state)
-     puts state
+     state['terraform_version']
+  end
+
+  def extract_json_version(state)
+     state['version']
+  end
+
+  def extract_serial(state)
+     state['serial']
   end
 
   def load_tf_state(s3_bucket_name, s3_bucket_key, role_arn)
@@ -48,8 +56,27 @@ class TerraformSOA < Sinatra::Base
     return tf_state
   end
 
-  before do
-      @req_data = JSON.parse(request.body.read.to_s)
+  def create_tf_entry(state, s3_bucket_name, s3_bucket_key, role_arn)
+    Tfstate.create(
+      s3_bucket_uri: "s3://#{s3_bucket_name}/#{s3_bucket_key}",
+      s3_bucket_key: "#{s3_bucket_key}", role_arn: "#{role_arn}",
+      state_json: "#{@req_data}",
+      terraform_version: "#{extract_tf_version(state)}",
+      json_version: "#{extract_json_version(state)}")
+  end
+
+  set(:method) do |method|
+    method = method.to_s.upcase
+    condition { request.request_method == method }
+  end
+
+  before :method => :post do
+    @req_data = JSON.parse(request.body.read.to_s)
+  end
+
+  get '/all_states' do
+    states = Tfstate.all
+    puts states
   end
 
   post '/add_tf_state' do
@@ -62,7 +89,7 @@ class TerraformSOA < Sinatra::Base
     s3_bucket_name = @req_data['s3_bucket_name']
     s3_bucket_key = @req_data['s3_bucket_key']
     role_arn = @req_data['role_arn']
-    extract_tf_version(load_tf_state(s3_bucket_name, s3_bucket_key, role_arn))
+    create_tf_entry(@req_data, s3_bucket_name, s3_bucket_key, role_arn)
   end
 
 end
