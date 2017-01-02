@@ -16,6 +16,10 @@ require 'aws-sdk'
 # Base URI is /tfsoa
 
 class Tfstate < ActiveRecord::Base
+  has_many :state_details
+end
+
+class State_detail < ActiveRecord::Base
 end
 
 class TerraformSOA < Sinatra::Base
@@ -57,9 +61,15 @@ class TerraformSOA < Sinatra::Base
   end
 
   def create_tf_entry(state, s3_bucket_name, s3_bucket_key, role_arn)
-    Tfstate.create(
-      s3_bucket_uri: "s3://#{s3_bucket_name}/#{s3_bucket_key}",
-      s3_bucket_key: "#{s3_bucket_key}", role_arn: "#{role_arn}",
+    db_transaction = Tfstate.find_by s3_bucket_key: s3_bucket_key
+    if db_transaction.nil?
+      db_transaction = Tfstate.create(
+        s3_bucket_uri: "s3://#{s3_bucket_name}/#{s3_bucket_key}",
+        s3_bucket_key: "#{s3_bucket_key}",
+        role_arn: "#{role_arn}")
+    end
+    State_detail.create(
+      tfstate_id: db_transaction.id,
       state_json: "#{@req_data}",
       terraform_version: "#{extract_tf_version(state)}",
       json_version: "#{extract_json_version(state)}")

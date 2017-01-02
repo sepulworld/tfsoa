@@ -10,18 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161231234036) do
+ActiveRecord::Schema.define(version: 20170102045743) do
+
+  create_table "state_details", force: :cascade do |t|
+    t.integer  "tfstate_id"
+    t.integer  "terraform_version"
+    t.text     "state_json"
+    t.integer  "json_version"
+    t.integer  "serial"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.index ["tfstate_id"], name: "index_state_details_on_tfstate_id"
+  end
 
   create_table "tfstates", force: :cascade do |t|
     t.string   "s3_bucket_uri"
     t.string   "s3_bucket_key"
     t.string   "role_arn"
-    t.text     "state_json"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.decimal  "terraform_version"
-    t.integer  "serial"
-    t.integer  "json_version"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
