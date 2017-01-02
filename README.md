@@ -20,6 +20,8 @@ aws_creds:
 
 ### Provide an AWS Role for TFSOA to use on each AWS account that you intend to monitor Terraform state files on
 
+TFSOA will leverage the role arn when inputing a new state into TFSOA
+
 ```json
 {
     "Version": "2012-10-17",
