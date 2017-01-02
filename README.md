@@ -8,6 +8,16 @@ The Terraform version, JSON serial, JSON version and entire state are saved. TFS
 this information across a multitude of states to present a single dashboard interface
 to view statistics on all Terraform states.
 
+### Setup TFSOA /etc/tfsoa.yaml
+
+```yaml
+---
+# place configuration at /etc/tfsoa.yaml
+aws_creds:
+  aws_access_key_id: "key_here"
+  aws_secret_access_key: "secret_here"
+```
+
 ### Provide an AWS Role for TFSOA to use
 
 ```json
