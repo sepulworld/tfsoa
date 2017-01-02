@@ -8,7 +8,7 @@ The Terraform version, JSON serial, JSON version and entire state are saved. TFS
 this information across a multitude of states to present a single dashboard interface
 to view statistics on all Terraform states.
 
-### Provide AWS Role access to TFSOA
+### Provide an AWS Role for TFSOA to use
 
 ```json
 {
