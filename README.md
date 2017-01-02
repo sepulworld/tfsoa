@@ -8,7 +8,7 @@ The Terraform version, JSON serial, JSON version and entire state are saved. TFS
 this information across a multitude of states to present a single dashboard interface
 to view statistics on all Terraform states.
 
-# Provide AWS Role access to TFSOA
+### Provide AWS Role access to TFSOA
 
 ```json
 {
@@ -38,7 +38,7 @@ to view statistics on all Terraform states.
 }
 ```
 
-# Setup database
+### Setup database
 
 ```
 bundle exec rake db:environment:set
@@ -46,14 +46,14 @@ bundle exec rake db:setup
 bundle exec rake db:migrate
 ```
 
-# Start tfsoa
+### Start TFSOA
 
 ```bash
 rackup
 ```
 This will start a rack server on port 9292
 
-# Add your first Terraform state to tfsoa, using your AWS Role you created
+### Add your first Terraform state to tfsoa, using your AWS Role you created
 
 ```bash
 curl 127.0.0.1:9292/tfsoa/add_tf_state \
