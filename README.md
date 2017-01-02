@@ -18,7 +18,7 @@ aws_creds:
   aws_secret_access_key: "secret_here"
 ```
 
-### Provide an AWS Role for TFSOA to use
+### Provide an AWS Role for TFSOA to use on each AWS account that you intend to monitor Terraform state files on
 
 ```json
 {
