@@ -4,10 +4,6 @@ require 'yaml'
 require 'json'
 require 'aws-sdk'
 
-# Todo
-# Assume role function
-# http://docs.aws.amazon.com/sdkforruby/api/Aws/AssumeRoleCredentials.html
-
 # Add state to database function PUT endpoint
 # Once in database a /jobs/refresh_state.rb will handle updating state based
 # upon the source in s3
@@ -52,6 +48,10 @@ class TerraformSOA < Sinatra::Base
      state['serial']
   end
 
+  def find_s3_bucket_key_entry(s3_bucket_key)
+    Tfstate.find_by s3_bucket_key: s3_bucket_key
+  end
+
   def load_tf_state(s3_bucket_name, s3_bucket_key, role_arn)
     role_credentials = assume_role(role_arn)
     s3 = Aws::S3::Client.new(credentials: role_credentials)
@@ -60,19 +60,25 @@ class TerraformSOA < Sinatra::Base
     return tf_state
   end
 
+  def create_state_detail_entry(db_transaction,
+                                state, s3_bucket_name, s3_bucket_key)
+    State_detail.create(
+      tfstate_id: db_transaction.id,
+      state_json: "#{@req_data}",
+      terraform_version: "#{extract_tf_version(state)}",
+      json_version: "#{extract_json_version(state)}")
+  end
+
   def create_tf_entry(state, s3_bucket_name, s3_bucket_key, role_arn)
-    db_transaction = Tfstate.find_by s3_bucket_key: s3_bucket_key
+    db_transaction = find_s3_bucket_key_entry(s3_bucket_key)
     if db_transaction.nil?
       db_transaction = Tfstate.create(
         s3_bucket_uri: "s3://#{s3_bucket_name}/#{s3_bucket_key}",
         s3_bucket_key: "#{s3_bucket_key}",
         role_arn: "#{role_arn}")
     end
-    State_detail.create(
-      tfstate_id: db_transaction.id,
-      state_json: "#{@req_data}",
-      terraform_version: "#{extract_tf_version(state)}",
-      json_version: "#{extract_json_version(state)}")
+    create_state_detail_entry(db_transaction,
+                              state, s3_bucket_name, s3_bucket_key)
   end
 
   set(:method) do |method|
