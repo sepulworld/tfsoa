@@ -9,6 +9,7 @@ gem 'sinatra-activerecord', '~> 2.0', '>= 2.0.11'
 gem 'activerecord', '~> 5.0', '>= 5.0.1'
 
 group :development do
+    gem 'rails-erd'
     gem 'shotgun'
     gem 'pry'
     gem 'tux'
