@@ -73,3 +73,11 @@ curl 127.0.0.1:9292/tfsoa/add_tf_state \
   -X \
   POST -d '{"role_arn": "arn:aws:iam::357170183134:role/s3read","s3_bucket_name": "terraform-autozane-remote-state","s3_bucket_key": "golang-app-dev/promotion/Terraform"}'
 ```
+
+### Development Notes
+
+Current entity-relationship diagram
+
+<img width="1158" alt="screen shot 2017-01-02 at 6 37 01 pm" src="https://cloud.githubusercontent.com/assets/538171/21599015/e581df58-d11a-11e6-817f-3ea81895bd98.png">
+
+
