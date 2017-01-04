@@ -1,3 +1,4 @@
 require "rails_erd/diagram/graphviz"
 
-RailsERD::Diagram::Graphviz.create
+# uncomment out if you want to generate a diagram of db relationships
+#RailsERD::Diagram::Graphviz.create
