@@ -1,5 +1,8 @@
 require_relative '../lib/tfsoa'
 
+tf_versions = Array.new
+tf_version_counts = Hash.new({ value: 0 })
+
 # This should pick up the latest state_details for a given tfstates entry
 
 # tf = Tfstate.all
