@@ -3,6 +3,8 @@
 A [smashing](https://github.com/Smashing/smashing) dashboard interface that helps centralize
 and monitor disparate [Terraform remote states](https://www.terraform.io/docs/state/).
 
+<img width="1015" alt="screen shot 2017-01-07 at 11 25 55 pm" src="https://cloud.githubusercontent.com/assets/538171/21748116/eb7b227e-d530-11e6-8746-3c62940bf080.png">
+
 TFSOA registers remote Terraform states (in s3 only presently) in a local database.
 The Terraform version, JSON serial, JSON version and entire state are saved. TFSOA uses
 this information across a multitude of states to present a single dashboard interface
