@@ -3,6 +3,8 @@
 A [smashing](https://github.com/Smashing/smashing) dashboard interface that helps centralize
 and monitor disparate [Terraform remote states](https://www.terraform.io/docs/state/).
 
+<img width="1158" alt="screen shot 2017-01-02 at 6 37 01 pm" src="https://cloud.githubusercontent.com/assets/538171/21748106/b81b7a28-d530-11e6-980a-caae481ce6a2.png">
+
 TFSOA registers remote Terraform states (in s3 only presently) in a local database.
 The Terraform version, JSON serial, JSON version and entire state are saved. TFSOA uses
 this information across a multitude of states to present a single dashboard interface
@@ -79,5 +81,3 @@ curl 127.0.0.1:9292/tfsoa/add_tf_state \
 Current entity-relationship diagram
 
 <img width="1158" alt="screen shot 2017-01-02 at 6 37 01 pm" src="https://cloud.githubusercontent.com/assets/538171/21599015/e581df58-d11a-11e6-817f-3ea81895bd98.png">
-
-
