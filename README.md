@@ -1,7 +1,6 @@
 # Terraform State of Awareness (TFSOA)
 
-A [smashing](https://github.com/Smashing/smashing) dashboard interface that helps centralize
-and monitor disparate [Terraform remote states](https://www.terraform.io/docs/state/).
+A dashboard that helps centralize and monitor disparate [Terraform remote states](https://www.terraform.io/docs/state/).
 
 <img width="992" alt="screen shot 2017-01-08 at 4 39 17 pm" src="https://cloud.githubusercontent.com/assets/538171/21755064/ad03c942-d5c1-11e6-991c-6e226f56b3e0.png">
 
@@ -81,3 +80,7 @@ curl 127.0.0.1:9292/tfsoa/add_tf_state \
 Current entity-relationship diagram
 
 <img width="1158" alt="screen shot 2017-01-02 at 6 37 01 pm" src="https://cloud.githubusercontent.com/assets/538171/21599015/e581df58-d11a-11e6-817f-3ea81895bd98.png">
+
+### Thank you
+
+Thanks to [Smashing gem](https://github.com/Smashing/smashing) for providing a solid framework for tfsoa to utilize
