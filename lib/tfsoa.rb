@@ -24,9 +24,11 @@ class TerraformSOA < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   set :database_file, "../config/database.yml"
 
-  config = YAML.load_file("/etc/tfsoa.yaml")
-  @aws_access_key_id = config["aws_creds"]["aws_access_key_id"]
-  @aws_secret_access_key = config["aws_creds"]["aws_secret_access_key"]
+  if File.exist?("/etc/tfsoa.yaml")
+    config = YAML.load_file("/etc/tfsoa.yaml")
+    @aws_access_key_id = config["aws_creds"]["aws_access_key_id"]
+    @aws_secret_access_key = config["aws_creds"]["aws_secret_access_key"]
+  end
 
   def assume_role(role_arn)
     role_credentials = Aws::AssumeRoleCredentials.new(

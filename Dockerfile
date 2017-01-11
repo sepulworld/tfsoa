@@ -26,9 +26,11 @@ VOLUME /app
 WORKDIR /app
 
 RUN gem install bundler && \
-    bundle install && \
-    bundle exec rake db:setup && \
-    rackup
+    bundle install 
+    
+RUN bundle exec rake db:setup 
+    
+RUN rackup
 
 
 
