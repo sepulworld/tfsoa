@@ -76,7 +76,6 @@ class TerraformSOA < Sinatra::Base
       json_version: extract_json_version(state),
       serial: extract_serial(state),
       )
-      puts "HERE IS VERSION #{extract_tf_version(state)} OR #{state['terraform_version']}"
   end
 
   def create_tf_entry(state, raw_state, s3_bucket_name, s3_bucket_key, role_arn)
@@ -100,9 +99,13 @@ class TerraformSOA < Sinatra::Base
     @req_data = JSON.parse(request.body.read.to_s)
   end
 
-  get '/all_states' do
-    states = Tfstate.all
-    puts states
+  get '/outputs/*' do
+    # Example
+    # http://127.0.0.1:9292/tfsoa/outputs/autozane_kafka_awslogs_cloudwatch%2Fpromotion%2FTerraform
+    @state_entry = Tfstate.find_by s3_bucket_key: params[:splat]
+    @state_entry_last_details = @state_entry.state_details.last
+    @state_entry_json = JSON.parse(@state_entry_last_details.state_json)
+    erb :outputs
   end
 
   post '/add_tf_state' do

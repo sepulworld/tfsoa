@@ -3,6 +3,7 @@ require 'dashing'
 
 configure do
   set :auth_token, 'YOUR_AUTH_TOKEN'
+  set :protection, :except => :path_traversal
 
   helpers do
     def protected!
