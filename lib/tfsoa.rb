@@ -55,14 +55,6 @@ class TerraformSOA < Sinatra::Base
     Tfstate.find_by s3_bucket_key: s3_bucket_key
   end
 
-  def load_tf_state_raw_json(s3_bucket_name, s3_bucket_key, role_arn)
-    role_credentials = assume_role(role_arn)
-    s3 = Aws::S3::Client.new(credentials: role_credentials)
-    resp = s3.get_object(bucket: s3_bucket_name, key: s3_bucket_key)
-    raw_state = resp.body.read
-    return raw_state
-  end
-
   def load_tf_state_ruby_hash(raw_state)
     tf_state = JSON.parse(raw_state)
     return tf_state
@@ -90,6 +82,15 @@ class TerraformSOA < Sinatra::Base
                               raw_state, state, s3_bucket_name, s3_bucket_key)
   end
 
+  def valid_json?(json)
+    begin
+      JSON.parse(json)
+      return true
+    rescue JSON::ParserError
+      return false
+    end
+  end
+
   set(:method) do |method|
     method = method.to_s.upcase
     condition { request.request_method == method }
@@ -108,19 +109,14 @@ class TerraformSOA < Sinatra::Base
     erb :outputs
   end
 
-  post '/add_tf_state' do
-    # example JSON input body
-    # {
-    #   "role_arn": "arn:aws:iam::357170183134:role/s3read",
-    #   "s3_bucket_name": "terraform-autozane-remote-state",
-    #   "s3_bucket_key": "autozane_kafka_awslogs_cloudwatch/promotion/Terraform"
-    # }
-    s3_bucket_name = @req_data['s3_bucket_name']
-    s3_bucket_key = @req_data['s3_bucket_key']
-    role_arn = @req_data['role_arn']
-    raw_state = load_tf_state_raw_json(s3_bucket_name, s3_bucket_key, role_arn)
-    state = load_tf_state_ruby_hash(raw_state)
-    create_tf_entry(state, raw_state, s3_bucket_name, s3_bucket_key, role_arn)
+  post '/add_tf_state/:team/:product/:service/:environment/' do
+    # HTTP post TF state json to then endpoint
+    @params = params
+    valid_json(@req_data)
+    state = load_tf_state_ruby_hash(@req_data)
+    raw_state = @req_data
+    create_tf_entry(state, raw_state, @params[:team], @params[:product],
+      @params[:service], @params[:environment])
   end
 
 end
