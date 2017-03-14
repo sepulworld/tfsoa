@@ -2,7 +2,7 @@
 
 A dashboard that helps centralize and monitor disparate [Terraform remote states](https://www.terraform.io/docs/state/).
 
-<img alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23921491/1172f844-08bc-11e7-86ff-a5aa7e3a391c.png">
+<img alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23921750/033ff2b2-08bd-11e7-9d78-632edc2c243b.png">
 
 TFSOA accepts pushes of remote Terraform states in a local database.
 The Terraform version, JSON serial, JSON version and entire state are saved. TFSOA uses
