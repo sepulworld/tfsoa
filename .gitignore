@@ -4,3 +4,4 @@ Gemfile.lock
 *.sqlite3
 notes.txt
 *.tfstate
+erd.pdf
