@@ -35,7 +35,7 @@ This will start a rack server on port 9292
 
 * team (team name that owns this tf state)
 * product (my companies new product this supports)
-* service (service name, or projet name)
+* service (service name, or project name)
 * environment (dev, stage, prod)
 
 ```bash
