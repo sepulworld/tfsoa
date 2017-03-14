@@ -8,7 +8,7 @@ SCHEDULER.every '10s' do
   states = StateDetail.where(created_at: (Time.now.prev_day)..(Time.now))
   states.each do |state|
     tf_states_with_changes[Tfstate.where(
-      id: state.tfstate_id).take.s3_bucket_key] += 1
+      id: state.tfstate_id).take.unique_tf_state] += 1
   end
   tf_states_with_changes.each do |state, updates|
     if updates >= 5

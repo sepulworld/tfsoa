@@ -56,7 +56,7 @@ class TerraformSOA < Sinatra::Base
 
   def create_tf_entry(state, raw_state, team, product, service, environment)
     unique_tf_state = "#{team}-#{product}-#{service}-#{environment}"
-    db_transaction = find_s3_bucket_key_entry(unique_tf_state)
+    db_transaction = find_unique_tf_state_entry(unique_tf_state)
     if db_transaction.nil?
       db_transaction = Tfstate.create(unique_tf_state: unique_tf_state)
     end
@@ -77,10 +77,6 @@ class TerraformSOA < Sinatra::Base
     condition { request.request_method == method }
   end
 
-  before :method => :post do
-    @req_data = JSON.parse(request.body.read.to_s)
-  end
-
   get '/outputs/*' do
     # Example
     # http://127.0.0.1:9292/tfsoa/outputs/dataplatform/silverbullet/zookeeper/dev
@@ -93,10 +89,7 @@ class TerraformSOA < Sinatra::Base
   post '/add_tf_state/:team/:product/:service/:environment/' do
     # HTTP post TF state json to then endpoint
     @params = params
-    valid_json?(@req_data)
-    state = load_tf_state_ruby_hash(@req_data)
-    raw_state = @req_data
-    create_tf_entry(state, raw_state, @params[:team], @params[:product],
+    create_tf_entry(JSON.parse(request.body.read), request.body.read, @params[:team], @params[:product],
       @params[:service], @params[:environment])
   end
 
