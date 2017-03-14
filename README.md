@@ -2,7 +2,7 @@
 
 A dashboard that helps centralize and monitor disparate [Terraform remote states](https://www.terraform.io/docs/state/).
 
-<img width="992" alt="screen shot 2017-01-08 at 4 39 17 pm" src="https://cloud.githubusercontent.com/assets/538171/21755064/ad03c942-d5c1-11e6-991c-6e226f56b3e0.png">
+<img width="1034" alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23920602/99a4ae5a-08b8-11e7-9a48-3b05c84d3c3d.png">
 
 TFSOA accepts pushes of remote Terraform states in a local database.
 The Terraform version, JSON serial, JSON version and entire state are saved. TFSOA uses
@@ -49,7 +49,7 @@ curl 127.0.0.1:9292/tfsoa/add_tf_state/team/product/service/environment/ \
 
 Current entity-relationship diagram
 
-<img width="1034" alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23920602/99a4ae5a-08b8-11e7-9a48-3b05c84d3c3d.png">
+<img width="1158" alt="screen shot 2017-01-02 at 6 37 01 pm" src="https://cloud.githubusercontent.com/assets/538171/21599015/e581df58-d11a-11e6-817f-3ea81895bd98.png">
 
 ### Thank you
 
