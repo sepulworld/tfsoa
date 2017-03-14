@@ -17,6 +17,7 @@ end
 
 class StateDetail < ActiveRecord::Base
   belongs_to :tfstate
+  serialize :state_json, Hash
 end
 
 class TerraformSOA < Sinatra::Base
@@ -47,7 +48,7 @@ class TerraformSOA < Sinatra::Base
 
   def create_state_detail_entry(db_transaction, raw_state, state)
     db_transaction.state_details.create(
-      state_json: raw_state,
+      state_json: state,
       terraform_version: extract_tf_version(state),
       json_version: extract_json_version(state),
       serial: extract_serial(state),
