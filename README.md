@@ -18,6 +18,10 @@ bundle exec rake db:setup
 bundle exec rake db:migrate
 ```
 
+### Recommended setup notes
+
+Place behind and SSL endpoint like an Nginx, ELB or Haproxy to handle SSL. Terraform states typically contain sensative information.
+
 ### Start TFSOA
 
 ```bash
@@ -25,13 +29,13 @@ rackup
 ```
 This will start a rack server on port 9292
 
-### Add your first Terraform state to tfsoa, using your AWS Role you created
+### Add your first Terraform state to tfsoa
 
 ```bash
-curl 127.0.0.1:9292/tfsoa/add_tf_state \
+curl 127.0.0.1:9292/tfsoa/add_tf_state/myteam/mycompany/myservice/myenvironment/ \
   -H "Content-Type: application/json" \
   -X \
-  POST -d '{"role_arn": "arn:aws:iam::357170183134:role/s3read","s3_bucket_name": "terraform-autozane-remote-state","s3_bucket_key": "golang-app-dev/promotion/Terraform"}'
+  POST -d @.terraform/terraform.tfstate
 ```
 
 ### Development Notes
