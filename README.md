@@ -31,8 +31,15 @@ This will start a rack server on port 9292
 
 ### Add your first Terraform state to tfsoa
 
+#### Unique identifiers for state
+
+* team (team name that owns this tf state)
+* product (my companies new product this supports)
+* service (service name, or projet name)
+* environment (dev, stage, prod)
+
 ```bash
-curl 127.0.0.1:9292/tfsoa/add_tf_state/myteam/mycompany/myservice/myenvironment/ \
+curl 127.0.0.1:9292/tfsoa/add_tf_state/team/product/service/environment/ \
   -H "Content-Type: application/json" \
   -X \
   POST -d @.terraform/terraform.tfstate
