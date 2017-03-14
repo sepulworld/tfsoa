@@ -49,7 +49,7 @@ curl 127.0.0.1:9292/tfsoa/add_tf_state/team/product/service/environment/ \
 
 Current entity-relationship diagram
 
-<img width="1158" alt="screen shot 2017-01-02 at 6 37 01 pm" src="https://cloud.githubusercontent.com/assets/538171/21599015/e581df58-d11a-11e6-817f-3ea81895bd98.png">
+<img width="1034" alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23920602/99a4ae5a-08b8-11e7-9a48-3b05c84d3c3d.png">
 
 ### Thank you
 

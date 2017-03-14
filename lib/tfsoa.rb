@@ -2,7 +2,11 @@ require 'sinatra'
 require "sinatra/activerecord"
 require 'yaml'
 require 'json'
-require 'aws-sdk'
+
+if development?
+  require 'awesome_print'
+  AwesomePrint.irb!
+end
 
 # Add state to database function PUT endpoint
 # Once in database a /jobs/refresh_state.rb will handle updating state based
