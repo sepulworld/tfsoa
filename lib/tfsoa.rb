@@ -93,7 +93,7 @@ class TerraformSOA < Sinatra::Base
   post '/add_tf_state/:team/:product/:service/:environment/' do
     # HTTP post TF state json to then endpoint
     @params = params
-    valid_json(@req_data)
+    valid_json?(@req_data)
     state = load_tf_state_ruby_hash(@req_data)
     raw_state = @req_data
     create_tf_entry(state, raw_state, @params[:team], @params[:product],
