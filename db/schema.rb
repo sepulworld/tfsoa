@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170104061639) do
+ActiveRecord::Schema.define(version: 20170314173520) do
 
   create_table "state_details", force: :cascade do |t|
     t.integer  "tfstate_id"
@@ -24,11 +24,9 @@ ActiveRecord::Schema.define(version: 20170104061639) do
   end
 
   create_table "tfstates", force: :cascade do |t|
-    t.string   "s3_bucket_uri"
-    t.string   "s3_bucket_key"
-    t.string   "role_arn"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "unique_tf_state"
   end
 
 end
