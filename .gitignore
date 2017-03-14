@@ -3,3 +3,4 @@ history.yml
 Gemfile.lock
 *.sqlite3
 notes.txt
+*.tfstate
