@@ -28,6 +28,7 @@ class TerraformSOA < Sinatra::Base
 
   register Sinatra::ActiveRecordExtension
   set :database_file, "../config/database.yml"
+  set :public_folder, 'public'
 
   def extract_tf_version(state)
      state['terraform_version']
@@ -97,5 +98,27 @@ class TerraformSOA < Sinatra::Base
     create_tf_entry(JSON.parse(request.body.read), request.body.read, @params[:team], @params[:product],
       @params[:service], @params[:environment])
   end
+
+  get '/list' do
+    @all_states = Tfstate.all
+    erb :list_states
+  end
+
+  get '/show/:unique_tf_state' do
+    @state = Tfstate.where(unique_tf_state: params[:unique_tf_state]).first
+    erb :show_state
+  end
+
+  get '/show_state/:id' do
+    @state_detail = StateDetail.find(params[:id])
+    erb :show_state_detail
+  end
+
+  get '/download_state/:id' do
+    @state_detail = StateDetail.find(params[:id])
+    content_type :json
+    @state_detail.state_json.to_json
+  end
+
 
 end
