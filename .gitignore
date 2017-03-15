@@ -5,3 +5,4 @@ Gemfile.lock
 notes.txt
 *.tfstate
 erd.pdf
+public/*.png

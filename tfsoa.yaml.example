@@ -1,6 +1,0 @@
----
-# place configuration at /etc/tfsoa.yaml
-aws_creds:
-  aws_access_key_id: "key_here"
-  aws_secret_access_key: "secret_here"
-
