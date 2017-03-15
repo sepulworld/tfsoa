@@ -28,7 +28,6 @@ class TerraformSOA < Sinatra::Base
 
   register Sinatra::ActiveRecordExtension
   set :database_file, "../config/database.yml"
-  
   def extract_tf_version(state)
      state['terraform_version']
   end
@@ -124,6 +123,5 @@ class TerraformSOA < Sinatra::Base
     File.open("/tmp/#{unique_tf_state}.dot", 'w') { |file| file.write(URI.unescape(request.body.read)) }
     `dot -Tpng /tmp/#{unique_tf_state}.dot -o public/#{unique_tf_state}.png`
   end
-
 
 end
