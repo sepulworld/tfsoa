@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170314173520) do
+ActiveRecord::Schema.define(version: 20170315195445) do
 
   create_table "state_details", force: :cascade do |t|
     t.integer  "tfstate_id"
     t.string   "terraform_version", limit: 8
-    t.text     "state_json"
+    t.text     "state_json",        limit: 4294967295
     t.integer  "json_version"
     t.integer  "serial"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.index ["tfstate_id"], name: "index_state_details_on_tfstate_id"
   end
 
