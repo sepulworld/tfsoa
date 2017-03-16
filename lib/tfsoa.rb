@@ -94,8 +94,15 @@ class TerraformSOA < Sinatra::Base
     erb :list_states, layout: :main_layout
   end
 
+  get '/list_team_states/:team' do
+    @team = params[:team]
+    @all_states = Tfstate.where(team: @team)
+    erb :list_team_states
+  end
+
   get '/show/:unique_tf_state' do
     @state = Tfstate.where(unique_tf_state: params[:unique_tf_state]).first
+    @team  = @state.team
     erb :show_state, layout: :main_layout
   end
 
