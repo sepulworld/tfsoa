@@ -4,7 +4,7 @@
 <ul>
   <% @all_states.each do |state| %>
     <li>
-      <a href=<%= "/tfsoa/show/#{state.unique_tf_state}" %>>
+      <a href=<%= "/show/#{state.unique_tf_state}" %>>
         <%= state.unique_tf_state %>
       </a>
     </li>
