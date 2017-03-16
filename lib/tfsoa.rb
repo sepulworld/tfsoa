@@ -28,8 +28,6 @@ class TerraformSOA < Sinatra::Base
 
   register Sinatra::ActiveRecordExtension
   set :database_file, "../config/database.yml"
-  set :public_folder, 'public'
-
   def extract_tf_version(state)
      state['terraform_version']
   end
@@ -120,5 +118,10 @@ class TerraformSOA < Sinatra::Base
     @state_detail.state_json.to_json
   end
 
+  post '/add_tf_graph/:team/:product/:service/:environment/' do
+    unique_tf_state = "#{params[:team]}-#{params[:product]}-#{params[:service]}-#{params[:environment]}"
+    File.open("/tmp/#{unique_tf_state}.dot", 'w') { |file| file.write(URI.unescape(request.body.read)) }
+    `dot -Tpng /tmp/#{unique_tf_state}.dot -o public/#{unique_tf_state}.png`
+  end
 
 end

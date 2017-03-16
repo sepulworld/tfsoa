@@ -1,11 +1,11 @@
 <h2><%= @state.unique_tf_state %></h2>
 
-<% if @state_diagram %>
-  <img src="/public/<%= "#{@state.unique_tf_state}_#{@state.state_details.last.id}.png" %>" />
-<% end %>
+<a href=/<%= "#{@state.unique_tf_state}.png" %>>
+  <img src="/<%= "#{@state.unique_tf_state}.png" %>" width="200px"/>
+</a>
 
 <ul>
-  <% @state.state_details.each do |state_detail| %>
+  <% @state.state_details.reverse.each do |state_detail| %>
     <li>
       <a href=<%= "/tfsoa/show_state/#{state_detail.id}" %>>
         <%= state_detail.created_at %>
