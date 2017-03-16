@@ -126,9 +126,12 @@ class TerraformSOA < Sinatra::Base
 
   get '/render_graph/:state_detail_id' do
     state_detail = StateDetail.find(params[:state_detail_id])
-    digraph = state_detail.digraph
-    File.open("/tmp/#{state_detail.id}.dot", 'w') { |file| file.write(digraph) }
-    `dot -Tpng /tmp/#{state_detail.id}.dot -o public/#{state_detail.id}.png`
+
+    if !File.exist?("public/#{state_detail.id}.png")
+      digraph = state_detail.digraph
+      File.open("/tmp/#{state_detail.id}.dot", 'w') { |file| file.write(digraph) }
+      `dot -Tpng /tmp/#{state_detail.id}.dot -o public/#{state_detail.id}.png`
+    end
     redirect "#{state_detail.id}.png"
   end
 end
