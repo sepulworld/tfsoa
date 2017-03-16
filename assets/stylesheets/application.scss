@@ -5,8 +5,8 @@
 // ----------------------------------------------------------------------------
 // Sass declarations
 // ----------------------------------------------------------------------------
-$background-color: #222;
-$text-color: #fff;
+$background-color: #fff;
+$text-color: #000;
 
 $background-warning-color-1: #e82711;
 $background-warning-color-2: #9b2d23;
@@ -149,6 +149,7 @@ h3 {
   height: inherit;
   display: table-cell;
   vertical-align: middle;
+  background-color: #00c767;
 }
 
 .widget.status-warning {
@@ -255,4 +256,3 @@ h3 {
 .clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
 .clearfix:after { clear: both; }
 .clearfix { zoom: 1; }
-
