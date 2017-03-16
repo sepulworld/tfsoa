@@ -120,8 +120,15 @@ class TerraformSOA < Sinatra::Base
 
   post '/add_tf_graph/:team/:product/:service/:environment/' do
     unique_tf_state = "#{params[:team]}-#{params[:product]}-#{params[:service]}-#{params[:environment]}"
-    File.open("/tmp/#{unique_tf_state}.dot", 'w') { |file| file.write(URI.unescape(request.body.read)) }
-    `dot -Tpng /tmp/#{unique_tf_state}.dot -o public/#{unique_tf_state}.png`
+    state_detail = Tfstate.where(unique_tf_state: unique_tf_state).first.state_details.last
+    state_detail.update_attribute(:digraph, URI.unescape(request.body.read))
   end
 
+  get '/render_graph/:state_detail_id' do
+    state_detail = StateDetail.find(params[:state_detail_id])
+    digraph = state_detail.digraph
+    File.open("/tmp/#{state_detail.id}.dot", 'w') { |file| file.write(digraph) }
+    `dot -Tpng /tmp/#{state_detail.id}.dot -o public/#{state_detail.id}.png`
+    redirect "#{state_detail.id}.png"
+  end
 end

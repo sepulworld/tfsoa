@@ -2,6 +2,10 @@
 
 <h2><%= @state_detail.tfstate.unique_tf_state %> #<%= @state_detail.id %></h2>
 
+<% if @state_detail.digraph %>
+  <a href=<%= "/tfsoa/render_graph/#{@state_detail.id}"%>>Graph</a>
+<% end %>
+
 <ul>
   <% @state_detail.attributes.each do |detail| %>
     <li><b><%= detail[0] %></b>: <%= detail[1] %></li>
