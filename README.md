@@ -38,11 +38,21 @@ This will start a rack server on port 9292
 * service (service name, or project name)
 * environment (dev, stage, prod)
 
+
+#### Example state push
+
 ```bash
 curl 127.0.0.1:9292/tfsoa/add_tf_state/team/product/service/environment/ \
   -H "Content-Type: application/json" \
   -X \
   POST -d @.terraform/terraform.tfstate
+```
+
+#### Example graph push
+
+```bash
+terraform graph \
+| curl -d @- http://localhost:9292/tfsoa/add_tf_graph/comms/trulia/someservice/prod/
 ```
 
 ### Development Notes

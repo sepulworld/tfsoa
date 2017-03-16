@@ -13,7 +13,8 @@ SCHEDULER.every '10s' do
   end
   tf_version_counts.each do |label, value|
     version = label
-    tf_version_labels[version] = { label: "#{version || 'Unknown'}", value: value}
+    tf_version_labels[version] = { label: "#{version || '< 0.7.0'}", value: value}
   end
+
   send_event('tf_versions', { items: tf_version_labels.values })
 end

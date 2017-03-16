@@ -1,1 +1,9 @@
-<%= @state_detail.inspect %>
+<title>tfsoa <%= @state_detail.tfstate.unique_tf_state %> #<%= @state_detail.id %></title>
+
+<h2><%= @state_detail.tfstate.unique_tf_state %> #<%= @state_detail.id %></h2>
+
+<ul>
+  <% @state_detail.attributes.each do |detail| %>
+    <li><b><%= detail[0] %></b>: <%= detail[1] %></li>
+  <% end %>
+</ul>
