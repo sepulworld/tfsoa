@@ -1,20 +1,10 @@
 require_relative '../lib/tfsoa'
 
 SCHEDULER.every '10s' do
-  tf = Tfstate.all
-  tf_versions = Array.new
-  tf_version_counts = Hash.new 0
-  tf_version_labels = Hash.new({ value: 0 })
-  tf.each do |state|
-    tf_versions.push(state.state_details.first.terraform_version)
-  end
-  tf_versions.each do |count|
-    tf_version_counts[count] += 1
-  end
-  tf_version_counts.each do |label, value|
-    version = label
-    tf_version_labels[version] = { label: "#{version || '< 0.7.0'}", value: value}
-  end
+  tf_states = Tfstate.all
+  latest_versions = tf_states.map {|a| a.state_details.last.terraform_version}
 
-  send_event('tf_versions', { items: tf_version_labels.values })
+  tf_versions = latest_versions.each_with_object(Hash.new(0)){ |m,h| h[m] += 1 }.sort_by{
+     |k,v| v }.to_h.map {|k,v| {label: k || '< 0.7.0', value: v}}.reverse
+  send_event('tf_versions', { items: tf_versions })
 end
