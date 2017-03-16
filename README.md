@@ -1,11 +1,16 @@
 # Terraform State of Awareness (TFSOA)
 
-A dashboard that helps centralize and monitor disparate [Terraform remote states](https://www.terraform.io/docs/state/).
+A dashboard that helps centralize and monitor disparate [Terraform states](https://www.terraform.io/docs/state/).
 
 <img alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23921750/033ff2b2-08bd-11e7-9d78-632edc2c243b.png">
 
-TFSOA accepts pushes of remote Terraform states in a local database.
-The Terraform version, JSON serial, JSON version and entire state are saved. TFSOA uses
+TFSOA accepts pushes of Terraform states and digraph output.
+
+* Versioned backups of state
+* Generate graph visual from digraph
+* Dashboard to track useful state information
+
+The Terraform version, JSON serial, JSON version and entire state are serialized saved. TFSOA uses
 this information across a multitude of states to present a single dashboard interface
 to view statistics on all Terraform states.
 
