@@ -61,7 +61,7 @@ class TerraformSOA < Sinatra::Base
     unique_tf_state = "#{team}-#{product}-#{service}-#{environment}"
     db_transaction = find_unique_tf_state_entry(unique_tf_state)
     if db_transaction.nil?
-      db_transaction = Tfstate.create(unique_tf_state: unique_tf_state, team: team))
+      db_transaction = Tfstate.create(unique_tf_state: unique_tf_state, team: team)
     end
     create_state_detail_entry(db_transaction, raw_state, state)
   end
