@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <%= bootstrap_assets %>
+
+  <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link rel="icon" href="/dashboard/assets/favicon.ico">
+
+  <style>
+    #container {padding: 5px; margin: 5px;}
+  </style>
+
+</head>
+  <body>
+    <div id="container">
+      <div class="navbar">
+        <div class="navbar-inner">
+          <a class="brand" href="#">TFSOA</a>
+          <ul class="nav">
+            <li><a href="/">Admin</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <%= yield %>
+    </div>
+  </body>
+</html>
