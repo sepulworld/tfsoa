@@ -7,6 +7,7 @@ gem 'sinatra'
 gem 'sinatra-activerecord', '~> 2.0', '>= 2.0.11'
 gem 'activerecord', '~> 5.0', '>= 5.0.1'
 gem 'mysql2'
+gem 'json-compare'
 
 group :development do
   gem 'rails-erd'

@@ -2,14 +2,19 @@
 <h2><%= @state.unique_tf_state %></h2>
 <h4>Team: <a href="/list_team_states/<%=@team%>"> <%= @team %></a></h4>
 <ul>
+  <% last_state_detail = nil %>
+
   <% @state.state_details.reverse.each do |state_detail| %>
     <li>
-      <a href=<%= "/tfsoa/show_state/#{state_detail.id}" %>>
-        <%= state_detail.created_at %>
-      </a>&nbsp;&nbsp;&nbsp;
-      <a href=<%= "/tfsoa/download_state/#{state_detail.id}" %>>
-        Download
-      </a>
+      <a href=<%= "/show_state/#{state_detail.id}" %>><%= state_detail.created_at %></a>&nbsp;&nbsp;
+      <a href=<%= "/download_state/#{state_detail.id}" %>>Download</a>&nbsp;&nbsp;
+      <% if state_detail.digraph %>
+        <a href=<%= "/render_graph/#{state_detail.id}"%>>Graph</a>
+      <% end %>
+      <% if last_state_detail && last_state_detail.sha != state_detail.sha %>
+        <a href=<%= "/changeset/#{last_state_detail.id}/#{state_detail.id}"%>>Changeset</a>
+      <% end %>
     </li>
+    <% last_state_detail = state_detail %>
   <% end %>
 </ul>

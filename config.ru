@@ -14,12 +14,20 @@ configure do
 end
 
 # Map to API for adding states
-map "/tfsoa" do
+map "/" do
   run TerraformSOA.new
 end
 
+set :assets_prefix, '/dashboard/assets'
 map Sinatra::Application.assets_prefix do
   run Sinatra::Application.sprockets
 end
 
-run Sinatra::Application
+map "/dashboard" do
+  run Sinatra::Application
+  set :default_dashboard, 'dashboard/tfstate'
+end
+
+map "/public" do
+  run Rack::Directory.new("./public")
+end

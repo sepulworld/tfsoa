@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316214522) do
+ActiveRecord::Schema.define(version: 20170316215013) do
 
   create_table "state_details", force: :cascade do |t|
     t.integer  "tfstate_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170316214522) do
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
     t.text     "digraph"
+    t.string   "sha"
     t.index ["tfstate_id"], name: "index_state_details_on_tfstate_id"
   end
 

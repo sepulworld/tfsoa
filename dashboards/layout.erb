@@ -9,24 +9,16 @@
   <title><%= yield_content(:title) %></title>
 
   <!-- The javascript and css are managed by sprockets. The files can be found in the /assets folder-->
-  <script type="text/javascript" src="/assets/application.js"></script>
-  <link rel="stylesheet" href="/assets/application.css">
+  <script type="text/javascript" src="/dashboard/assets/application.js"></script>
+  <link rel="stylesheet" href="/dashboard/assets/application.css">
 
   <link href='//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-  <link rel="icon" href="/assets/favicon.ico">
+  <link rel="icon" href="/dashboard/assets/favicon.ico">
 
 </head>
   <body>
     <div id="container">
       <%= yield %>
     </div>
-  
-    <% if development? %>
-      <div id="saving-instructions">
-        <p>Paste the following at the top of <i><%= params[:dashboard] %>.erb</i></p>
-        <textarea id="gridster-code"></textarea>
-      </div>
-      <a href="#saving-instructions" id="save-gridster">Save this layout</a>
-    <% end %>
   </body>
 </html>
