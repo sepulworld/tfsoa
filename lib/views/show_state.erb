@@ -1,6 +1,6 @@
 <title>tfsoa <%= @state.unique_tf_state %></title>
 <h2><%= @state.unique_tf_state %></h2>
-
+<h4>Team: <a href="/list_team_states/<%=@team%>"> <%= @team %></a></h4>
 <ul>
   <% @state.state_details.reverse.each do |state_detail| %>
     <li>

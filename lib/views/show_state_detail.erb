@@ -7,6 +7,7 @@
 <% end %>
 
 <ul>
+  <li><b>team</b>: <%= @state_detail.tfstate.team %></li>
   <% @state_detail.attributes.each do |detail| %>
     <li><b><%= detail[0] %></b>: <%= detail[1] %></li>
   <% end %>
