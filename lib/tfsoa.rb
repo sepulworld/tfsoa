@@ -110,6 +110,7 @@ class TerraformSOA < Sinatra::Base
 
   get '/show/:unique_tf_state' do
     @state = Tfstate.where(unique_tf_state: params[:unique_tf_state]).first
+    @team = @state.team
     erb :show_state
   end
 
