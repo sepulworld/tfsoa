@@ -4,6 +4,7 @@ require 'yaml'
 require 'json'
 require 'digest/sha1'
 require 'json-compare'
+require 'sinatra/twitter-bootstrap'
 
 if development?
   require 'awesome_print'
@@ -20,7 +21,7 @@ class StateDetail < ActiveRecord::Base
 end
 
 class TerraformSOA < Sinatra::Base
-
+  register Sinatra::Twitter::Bootstrap::Assets
   register Sinatra::ActiveRecordExtension
   set :database_file, "../config/database.yml"
   set :public_folder, 'public'
@@ -88,45 +89,25 @@ class TerraformSOA < Sinatra::Base
     erb :outputs
   end
 
-  post '/tfsoa/add_tf_state/:team/:product/:service/:environment/' do
-    # HTTP post TF state json to then endpoint
-    @params = params
-    create_tf_entry(JSON.parse(request.body.read), request.body.read, @params[:team], @params[:product],
-      @params[:service], @params[:environment])
-  end
-
   get '/' do
     @all_states = Tfstate.all
-    erb :list_states
-  end
-
-  get '/list_team_states/:team' do
-    @team = params[:team]
-    @all_states = Tfstate.where(team: @team)
-    erb :list_team_states
+    erb :list_states, layout: :main_layout
   end
 
   get '/show/:unique_tf_state' do
     @state = Tfstate.where(unique_tf_state: params[:unique_tf_state]).first
-    @team = @state.team
-    erb :show_state
+    erb :show_state, layout: :main_layout
   end
 
   get '/show_state/:id' do
     @state_detail = StateDetail.find(params[:id])
-    erb :show_state_detail
+    erb :show_state_detail, layout: :main_layout
   end
 
   get '/download_state/:id' do
     @state_detail = StateDetail.find(params[:id])
     attachment "#{@state_detail.tfstate.unique_tf_state}_#{@state_detail.created_at}.json"
     @state_detail.state_json.to_json
-  end
-
-  post '/tfsoa/add_tf_graph/:team/:product/:service/:environment/' do
-    unique_tf_state = "#{params[:team]}-#{params[:product]}-#{params[:service]}-#{params[:environment]}"
-    state_detail = Tfstate.where(unique_tf_state: unique_tf_state).first.state_details.last
-    state_detail.update_attribute(:digraph, URI.unescape(request.body.read))
   end
 
   get '/render_graph/:state_detail_id' do
@@ -143,6 +124,21 @@ class TerraformSOA < Sinatra::Base
   get '/changeset/:old_id/:new_id' do
     old, new = JSON.parse(StateDetail.find(params[:old_id]).state_json.to_json), JSON.parse(StateDetail.find(params[:new_id]).state_json.to_json)
     @diff = JSON.pretty_generate(JsonCompare.get_diff(old, new))
-    erb :changeset
+    erb :changeset, layout: :main_layout
   end
+
+  # API Calls
+  post '/tfsoa/add_tf_graph/:team/:product/:service/:environment/' do
+    unique_tf_state = "#{params[:team]}-#{params[:product]}-#{params[:service]}-#{params[:environment]}"
+    state_detail = Tfstate.where(unique_tf_state: unique_tf_state).first.state_details.last
+    state_detail.update_attribute(:digraph, URI.unescape(request.body.read))
+  end
+
+  post '/tfsoa/add_tf_state/:team/:product/:service/:environment/' do
+    # HTTP post TF state json to then endpoint
+    @params = params
+    create_tf_entry(JSON.parse(request.body.read), request.body.read, @params[:team], @params[:product],
+      @params[:service], @params[:environment])
+  end
+
 end

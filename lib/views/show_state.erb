@@ -13,6 +13,8 @@
       <% end %>
       <% if last_state_detail && last_state_detail.sha != state_detail.sha %>
         <a href=<%= "/changeset/#{last_state_detail.id}/#{state_detail.id}"%>>Changeset</a>
+      <% else %>
+        <span class="label">Plan</span>
       <% end %>
     </li>
     <% last_state_detail = state_detail %>
