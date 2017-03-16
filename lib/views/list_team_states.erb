@@ -1,0 +1,12 @@
+<title>tfsoa States</title>
+
+<h2>All <%=@team.capitalize %> States</h2>
+<ul>
+  <% @all_states.each do |state| %>
+    <li>
+      <a href=<%= "/show/#{state.unique_tf_state}" %>>
+        <%= state.unique_tf_state %>
+      </a>
+    </li>
+  <% end %>
+</ul>

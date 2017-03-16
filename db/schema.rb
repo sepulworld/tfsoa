@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20170316215013) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.string   "unique_tf_state"
+    t.string   "team"
   end
 
 end

@@ -60,7 +60,7 @@ class TerraformSOA < Sinatra::Base
     unique_tf_state = "#{team}-#{product}-#{service}-#{environment}"
     db_transaction = find_unique_tf_state_entry(unique_tf_state)
     if db_transaction.nil?
-      db_transaction = Tfstate.create(unique_tf_state: unique_tf_state)
+      db_transaction = Tfstate.create(unique_tf_state: unique_tf_state, team: team)
     end
     create_state_detail_entry(db_transaction, raw_state, state)
   end
@@ -100,8 +100,15 @@ class TerraformSOA < Sinatra::Base
     erb :list_states
   end
 
+  get '/list_team_states/:team' do
+    @team = params[:team]
+    @all_states = Tfstate.where(team: @team)
+    erb :list_team_states
+  end
+
   get '/show/:unique_tf_state' do
     @state = Tfstate.where(unique_tf_state: params[:unique_tf_state]).first
+    @team = @state.team
     erb :show_state
   end
 
