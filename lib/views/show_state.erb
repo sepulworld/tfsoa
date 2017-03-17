@@ -1,5 +1,5 @@
 <title>tfsoa <%= @state.unique_tf_state %></title>
-<h2><%= @state.unique_tf_state %></h2>
+<h2><%= @state.jenkins_job_name %> <span class="label label-warning"><%= @state.environment %></span></h2>
 <h4>Team: <a href="/list_team_states/<%=@team%>"> <%= @team %></a></h4>
 
 <% last_state_detail = nil %>

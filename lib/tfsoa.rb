@@ -13,6 +13,16 @@ end
 
 class Tfstate < ActiveRecord::Base
   has_many :state_details
+
+  def environment
+    unique_tf_state.split('-').last
+  end
+
+  def jenkins_job_name
+    split_name = unique_tf_state.split('-')
+    split_name.pop; split_name.shift
+    split_name.join('-')
+  end
 end
 
 class StateDetail < ActiveRecord::Base
