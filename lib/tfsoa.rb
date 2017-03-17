@@ -91,13 +91,18 @@ class TerraformSOA < Sinatra::Base
 
   get '/' do
     @all_states = Tfstate.all
+    erb :list_teams, layout: :main_layout
+  end
+
+  get '/all_states' do
+    @all_states = Tfstate.all
     erb :list_states, layout: :main_layout
   end
 
   get '/list_team_states/:team' do
     @team = params[:team]
     @all_states = Tfstate.where(team: @team)
-    erb :list_team_states
+    erb :list_team_states, layout: :main_layout
   end
 
   get '/show/:unique_tf_state' do

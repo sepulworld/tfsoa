@@ -1,12 +1,25 @@
 <title>tfsoa States</title>
 
 <h2>All States</h2>
-<ul>
-  <% @all_states.each do |state| %>
-    <li>
-      <a href=<%= "/show/#{state.unique_tf_state}" %>>
-        <%= state.unique_tf_state %>
-      </a>
-    </li>
-  <% end %>
-</ul>
+<div class="row">
+  <div class="span8">
+    <table class="table table-bordered">
+      <% @all_states.each do |state| %>
+        <tr>
+          <th>TF Project</th>
+          <th>State Updates</th>
+        </tr>
+        <tr>
+          <td>
+            <a href=<%= "/show/#{state.unique_tf_state}" %>>
+              <%= state.unique_tf_state %>
+            </a>
+          </td>
+          <td>
+            <span class="badge badge-info"><%= state.state_details.count %></span>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

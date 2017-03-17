@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170316215013) do
+ActiveRecord::Schema.define(version: 20170317180035) do
 
   create_table "state_details", force: :cascade do |t|
     t.integer  "tfstate_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20170316215013) do
     t.integer  "serial"
     t.datetime "created_at",                           null: false
     t.datetime "updated_at",                           null: false
-    t.text     "digraph"
+    t.text     "digraph",           limit: 4294967295
     t.string   "sha"
     t.index ["tfstate_id"], name: "index_state_details_on_tfstate_id"
   end

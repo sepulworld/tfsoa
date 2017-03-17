@@ -2,13 +2,24 @@
 
 <h2><%= @state_detail.tfstate.unique_tf_state %> #<%= @state_detail.id %></h2>
 
-<% if @state_detail.digraph %>
-  <a href=<%= "/render_graph/#{@state_detail.id}"%>>Graph</a>
-<% end %>
+<div class="row">
+  <div class="span8">
+    <table class="table table-bordered">
+      <% attrs = @state_detail.attributes ; attrs.delete('state_json') ; attrs.delete('digraph')  %>
+      <tr>
+        <% attrs.keys.each do |key| %>
+          <th><%= key %></th>
+        <% end %>
+      </tr>
+      <tr>
+        <% attrs.values.each do |value| %>
+          <td><%= value %></td>
+        <% end %>
+      </tr>
+    </table>
+  </div>
+</div>
 
-<ul>
-  <li><b>team</b>: <%= @state_detail.tfstate.team %></li>
-  <% @state_detail.attributes.each do |detail| %>
-    <li><b><%= detail[0] %></b>: <%= detail[1] %></li>
-  <% end %>
-</ul>
+<% if @state_detail.digraph %>
+  <h4><a href=<%= "/render_graph/#{@state_detail.id}"%>>Graph</a></h4>
+<% end %>

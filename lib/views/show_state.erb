@@ -1,22 +1,41 @@
 <title>tfsoa <%= @state.unique_tf_state %></title>
 <h2><%= @state.unique_tf_state %></h2>
 <h4>Team: <a href="/list_team_states/<%=@team%>"> <%= @team %></a></h4>
-<ul>
-  <% last_state_detail = nil %>
 
-  <% @state.state_details.reverse.each do |state_detail| %>
-    <li>
-      <a href=<%= "/show_state/#{state_detail.id}" %>><%= state_detail.created_at %></a>&nbsp;&nbsp;
-      <a href=<%= "/download_state/#{state_detail.id}" %>>Download</a>&nbsp;&nbsp;
-      <% if state_detail.digraph %>
-        <a href=<%= "/render_graph/#{state_detail.id}"%>>Graph</a>
+<% last_state_detail = nil %>
+
+<div class="row">
+  <div class="span8">
+    <table class="table table-bordered">
+      <tr>
+        <th>State Update</th>
+        <th></th>
+      </tr>
+
+      <% @state.state_details.reverse.each do |state_detail| %>
+        <tr>
+          <td>
+            <a href=<%= "/show_state/#{state_detail.id}" %>><%= state_detail.created_at %></a>
+          </td>
+          <td>
+            <% if state_detail.digraph %>
+              <a href=<%= "/render_graph/#{state_detail.id}"%>>Graph</a>
+            <% end %>
+          </td>
+          <td>
+            <% if last_state_detail && last_state_detail.sha != state_detail.sha %>
+              <a href=<%= "/changeset/#{last_state_detail.id}/#{state_detail.id}"%>>Changeset</a>
+            <% else %>
+                <span class="label">Plan</span>
+            <% end %>
+          </td>
+          <td>
+            <a href=<%= "/download_state/#{state_detail.id}" %>>Download <i class="icon-download-alt"></i></a>
+          </td>
+
+        </tr>
+        <% last_state_detail = state_detail %>
       <% end %>
-      <% if last_state_detail && last_state_detail.sha != state_detail.sha %>
-        <a href=<%= "/changeset/#{last_state_detail.id}/#{state_detail.id}"%>>Changeset</a>
-      <% else %>
-        <span class="label">Plan</span>
-      <% end %>
-    </li>
-    <% last_state_detail = state_detail %>
-  <% end %>
-</ul>
+    </table>
+  </div>
+</div>
