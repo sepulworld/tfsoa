@@ -8,7 +8,7 @@
         <th>Team</th>
         <th>Tracked States</th>
       </tr>
-      <% team_names = @all_states.pluck(:team) %>
+      <% team_names = @all_states.pluck(:team).uniq %>
       <% team_names.each do |team_name| %>
         <tr>
           <td>
