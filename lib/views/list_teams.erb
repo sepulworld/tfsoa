@@ -1,0 +1,26 @@
+<title>tfsoa States</title>
+
+<h2>All Teams</h2>
+<div class="row">
+  <div class="span8">
+    <table class="table table-bordered">
+      <% team_names = @all_states.pluck(:team) %>
+      <% team_names.each do |team_name| %>
+        <tr>
+          <th>Team</th>
+          <th>Tracked States</th>
+        </tr>
+        <tr>
+          <td>
+            <a href=<%= "/list_team_states/#{team_name}" %>>
+              <%= team_name %>
+            </a>
+          </td>
+          <td>
+            <span class="badge badge-info"><%= @all_states.where(team: team_name).count %></span>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
