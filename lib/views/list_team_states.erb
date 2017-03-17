@@ -5,11 +5,11 @@
 <div class="row">
   <div class="span8">
     <table class="table table-bordered">
+      <tr>
+        <th>TF Project</th>
+        <th>State Updates</th>
+      </tr>
       <% @all_states.each do |state| %>
-        <tr>
-          <th>TF Project</th>
-          <th>State Updates</th>
-        </tr>
         <tr>
           <td>
             <a href=<%= "/show/#{state.unique_tf_state}" %>>
