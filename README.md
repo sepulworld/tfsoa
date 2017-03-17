@@ -64,7 +64,7 @@ terraform graph \
 
 Current entity-relationship diagram
 
-<img width="1158" alt="screen shot 2017-01-02 at 6 37 01 pm" src="https://cloud.githubusercontent.com/assets/538171/21599015/e581df58-d11a-11e6-817f-3ea81895bd98.png">
+<img alt="erd diagram" src="https://cloud.githubusercontent.com/assets/26415029/24062446/d3de1626-0b18-11e7-9b96-2bde9bc79124.png">
 
 ### Thank you
 
