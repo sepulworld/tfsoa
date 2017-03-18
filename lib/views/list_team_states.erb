@@ -7,14 +7,18 @@
     <table class="table table-bordered">
       <tr>
         <th>TF Project</th>
+        <th>Environment</th>
         <th>State Updates</th>
       </tr>
       <% @all_states.each do |state| %>
         <tr>
           <td>
             <a href=<%= "/show/#{state.unique_tf_state}" %>>
-              <%= state.unique_tf_state %>
+              <%= state.jenkins_job_name %>
             </a>
+          </td>
+          <td>
+            <span class="label label-warning"><%= state.environment %></span>
           </td>
           <td>
             <span class="badge badge-info"><%= state.state_details.count %></span>
