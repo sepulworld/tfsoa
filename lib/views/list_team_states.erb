@@ -9,6 +9,7 @@
         <th>TF Project</th>
         <th>Environment</th>
         <th>State Updates</th>
+        <th>Terraform Version</th>
       </tr>
       <% @all_states.each do |state| %>
         <tr>
@@ -22,6 +23,9 @@
           </td>
           <td>
             <span class="badge badge-info"><%= state.state_details.count %></span>
+          </td>
+          <td>
+            <span class="badge badge-info"><%= state.state_details.last.terraform_version %></span>
           </td>
         </tr>
       <% end %>
