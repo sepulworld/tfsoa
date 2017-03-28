@@ -4,6 +4,10 @@ A dashboard that helps centralize and monitor disparate [Terraform states](https
 
 <img alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23921750/033ff2b2-08bd-11e7-9d78-632edc2c243b.png">
 
+![Versioned states with environment and version markers](https://cloud.githubusercontent.com/assets/538171/24389114/03a1eaf4-1334-11e7-9a44-367f5d6233c2.jpg)
+![Per team managed states](https://cloud.githubusercontent.com/assets/538171/24389121/164dcdbc-1334-11e7-9052-184287bc5ed0.jpg)
+![Team layout of TF states](https://cloud.githubusercontent.com/assets/538171/24389129/1ba96988-1334-11e7-8abf-b3c47f43ff27.jpg)
+
 TFSOA accepts pushes of Terraform states and digraph output.
 
 * Versioned backups of state
