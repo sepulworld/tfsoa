@@ -129,7 +129,7 @@ class TerraformSOA < Sinatra::Base
   get '/download_state/:id' do
     @state_detail = StateDetail.find(params[:id])
     attachment "#{@state_detail.tfstate.unique_tf_state}_#{@state_detail.created_at}.json"
-    @state_detail.state_json.to_json
+    JSON.pretty_generate(@state_detail.state_json)
   end
 
   get '/render_graph/:state_detail_id' do
