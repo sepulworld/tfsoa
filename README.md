@@ -34,12 +34,19 @@ Place behind and SSL endpoint like an Nginx, ELB or Haproxy to handle SSL. Terra
 ### System requirements
 
 * graphviz (used for graph .png creation)
+* libsqlite3-dev (Ubuntu)
+* nodejs (Ubuntu)
+* libmysqlclient-dev (Ubuntu)
+* ruby (Ubuntu)
+* ruby-dev (Ubuntu)
+* build-essential (Ubuntu)
 
 ### Start TFSOA
 
 ```bash
 rackup
 ```
+
 This will start a rack server on port 9292
 
 ### Add your first Terraform state to tfsoa
@@ -73,6 +80,13 @@ terraform graph \
 Current entity-relationship diagram
 
 <img alt="erd diagram" src="https://cloud.githubusercontent.com/assets/26415029/24062446/d3de1626-0b18-11e7-9b96-2bde9bc79124.png">
+
+#### Vagrant support
+
+```bash
+vagrant up
+```
+Then navigate your browser to http://127.0.0.1:9292
 
 ### Thank you
 
