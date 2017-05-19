@@ -31,6 +31,10 @@ bundle exec rake db:migrate
 
 Place behind and SSL endpoint like an Nginx, ELB or Haproxy to handle SSL. Terraform states typically contain sensative information.
 
+### System requirements
+
+* graphviz (used for graph .png creation)
+
 ### Start TFSOA
 
 ```bash
