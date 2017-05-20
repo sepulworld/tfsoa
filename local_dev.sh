@@ -14,7 +14,8 @@ function install_system_packages {
 function install_terraform {
   if [ -f /usr/bin/terraform ]
     then
-      echo "Terraform installed"
+      echo "Terraform already installed"
+      echo "$(/usr/bin/terraform -version)"
     else
       wget --quiet https://releases.hashicorp.com/terraform/0.9.5/terraform_0.9.5_linux_amd64.zip
       unzip terraform_0.9.5_linux_amd64.zip -d /usr/bin/
@@ -25,7 +26,14 @@ function install_gems {
   gem install bundler puma
   pushd /vagrant || exit
   bundle install
-  bundle exec rake db:setup
+  if [ -f /vagrant/db/development.sqlite3 ]
+    then
+      echo ""
+      echo "/vagrant/db/development.sqlite3 already exists. Remove and re-run 'vagrant provision' if you want to re-create"
+      echo ""
+  else
+    bundle exec rake db:setup
+  fi
   popd
 }
 
