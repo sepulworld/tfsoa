@@ -88,6 +88,8 @@ vagrant up
 ```
 Then navigate your browser to http://127.0.0.1:9292
 
+Safe to run ```vagrant provision``` to restart tfsoa process if you make local code changes.
+
 ### Thank you
 
 Thanks to [Smashing gem](https://github.com/Smashing/smashing) for providing a solid framework for tfsoa to utilize
