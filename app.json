@@ -3,4 +3,11 @@
   "description": "A dashboard that helps centralize and monitor disparate Terraform states",
   "repository": "https://github.com/sepulworld/tfsoa",
   "keywords": ["terraform", "ruby", "sinatra"]
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "bundle exec rake test"
+      }
+    }
+  }
 }
