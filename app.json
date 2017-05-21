@@ -10,4 +10,7 @@
       "plan": "heroku-cleardb"
     }
   ]
+  "scripts": {
+    "postdeploy": "bundle exec rake db:setup"
+  }
 }
