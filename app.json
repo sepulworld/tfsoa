@@ -4,12 +4,6 @@
   "repository": "https://github.com/sepulworld/tfsoa",
   "keywords": ["terraform", "ruby", "sinatra"],
   "image": "heroku/ruby",
-  "addons": [
-    "cleardb",
-    {
-      "plan": "heroku-cleardb"
-    }
-  ],
   "scripts": {
     "postdeploy": "bundle exec rake db:setup"
   },
