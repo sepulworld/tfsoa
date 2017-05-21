@@ -1,1 +1,1 @@
-web: bundle exec puma
+web: bundle exec rackup -o 0.0.0.0 --port $PORT
