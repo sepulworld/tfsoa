@@ -2,12 +2,12 @@
   "name": "Terraform State of Awareness",
   "description": "A dashboard that helps centralize and monitor disparate Terraform states",
   "repository": "https://github.com/sepulworld/tfsoa",
-  "keywords": ["terraform", "ruby", "sinatra"]
-  "environments": {
-    "test": {
-      "scripts": {
-        "test": "bundle exec rake test"
-      }
+  "keywords": ["terraform", "ruby", "sinatra"],
+  "image": "heroku/ruby",
+  "addons": [
+    "cleardb",
+    {
+      "plan": "heroku-cleardb"
     }
-  }
+  ]
 }
