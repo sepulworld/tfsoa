@@ -9,7 +9,7 @@ gem 'activerecord', '~> 5.0', '>= 5.0.1'
 gem 'mysql2'
 gem 'pg'
 gem 'json-compare'
-gem 'graphviz'
+gem 'ruby-graphviz'
 gem 'puma'
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 
