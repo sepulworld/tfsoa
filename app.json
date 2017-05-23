@@ -4,6 +4,13 @@
   "repository": "https://github.com/sepulworld/tfsoa",
   "keywords": ["terraform", "ruby", "sinatra"],
   "image": "heroku/ruby",
+  "buildpacks": [
+    {
+      "url": "https://github.com/weibeld/heroku-buildpack-graphviz.git"
+    },
+      "url": "heroku/ruby"
+    }
+  ],
   "formation": {
     "web": {
       "quantity": 1,
