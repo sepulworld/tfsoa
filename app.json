@@ -7,6 +7,9 @@
   "buildpacks": [
     {
       "url": "https://github.com/weibeld/heroku-buildpack-graphviz.git"
+    },
+    {
+      "url": "heroku/ruby"
     }
   ],
   "formation": {
