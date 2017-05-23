@@ -4,9 +4,6 @@
   "repository": "https://github.com/sepulworld/tfsoa",
   "keywords": ["terraform", "ruby", "sinatra"],
   "image": "heroku/ruby",
-  "scripts": {
-    "postdeploy": "bundle exec rake db:setup"
-  },
   "formation": {
     "web": {
       "quantity": 1,
