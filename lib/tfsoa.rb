@@ -14,7 +14,7 @@ end
 class Tfstate < ActiveRecord::Base
   has_many :state_details
   
-  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+#  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
 
   def database_configuration
     path = paths["config/database"].existent.first
