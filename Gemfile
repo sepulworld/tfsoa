@@ -15,7 +15,6 @@ gem 'puma'
 gem 'sinatra-twitter-bootstrap', :require => 'sinatra/twitter-bootstrap'
 
 group :development do
-  gem 'rails-erd'
   gem 'shotgun'
   gem 'pry'
   gem 'tux'
