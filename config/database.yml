@@ -1,5 +1,5 @@
 production:
-  url: <%= ENV['DATABASE_URL'] %>
+  url: "postgres://localhost/mydb" 
 
 development:
   adapter: sqlite3
