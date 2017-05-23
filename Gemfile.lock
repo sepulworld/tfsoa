@@ -26,6 +26,7 @@ GEM
     daemons (1.2.4)
     eventmachine (1.2.1)
     execjs (2.0.2)
+    graphviz (0.4.0)
     hike (1.2.3)
     i18n (0.7.0)
     json-compare (0.1.8)
@@ -118,6 +119,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord (~> 5.0, >= 5.0.1)
   awesome_print
+  graphviz
   json-compare
   mysql2
   pg
