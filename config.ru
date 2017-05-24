@@ -1,21 +1,6 @@
 require_relative 'lib/tfsoa.rb'
 require 'dashing'
 
-use Rack::Static,
-    :urls => ["/images"],
-    :root => "public"
-
-run lambda { |env|
-  [
-    200,
-    {
-      'Content-Type'  => 'text/html',
-      'Cache-Control' => 'public, max-age=86400'
-    },
-    File.open('public/index.html', File::RDONLY)
-  ]
-}
-
 configure do
   set :auth_token, 'YOUR_AUTH_TOKEN'
   set :protection, :except => :path_traversal
@@ -44,5 +29,8 @@ map "/dashboard" do
 end
 
 map "/public" do
+  use Rack::Static,
+    :urls => ["/images"],
+    :root => "public"
   run Rack::Directory.new("./public")
 end
