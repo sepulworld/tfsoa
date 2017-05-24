@@ -2,6 +2,7 @@ require_relative 'lib/tfsoa.rb'
 require 'dashing'
 
 use Rack::Static,
+    :urls => ["/images"],
     :root => "public"
 
 run lambda { |env|
