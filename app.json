@@ -3,6 +3,7 @@
   "description": "A dashboard that helps centralize and monitor disparate Terraform states",
   "repository": "https://github.com/sepulworld/tfsoa",
   "keywords": ["terraform", "ruby", "sinatra"],
+  "addons": ["heroku-postgresql:hobby-dev"],
   "image": "heroku/ruby",
   "buildpacks": [
     {
@@ -17,5 +18,8 @@
       "quantity": 1,
       "size": "free"
     }
+  },
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
   }
 }
