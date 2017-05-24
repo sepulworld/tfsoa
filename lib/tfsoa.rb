@@ -13,8 +13,6 @@ end
 
 class Tfstate < ActiveRecord::Base
   has_many :state_details
-  
-#  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
 
   def environment
     unique_tf_state.split('-').last
