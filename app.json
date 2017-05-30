@@ -5,6 +5,7 @@
   "keywords": ["terraform", "ruby", "sinatra"],
   "addons": ["heroku-postgresql:hobby-dev"],
   "image": "heroku/ruby",
+  "stack": "heroku-16",
   "buildpacks": [
     {
       "url": "https://github.com/weibeld/heroku-buildpack-graphviz.git"
