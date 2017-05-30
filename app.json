@@ -21,6 +21,7 @@
     }
   },
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate; dot -c"
+    "postdeploy": "bundle exec rake db:migrate",
+    "postdeploy": "dot -c"
   }
 }
