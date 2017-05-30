@@ -8,7 +8,7 @@
   "stack": "heroku-16",
   "buildpacks": [
     {
-      "url": "https://github.com/weibeld/heroku-buildpack-graphviz.git"
+      "url": "https://github.com/sepulworld/heroku-buildpack-graphviz.git#zmw/adding_compile"
     },
     {
       "url": "heroku/ruby"
