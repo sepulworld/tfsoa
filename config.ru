@@ -29,8 +29,5 @@ map "/dashboard" do
 end
 
 map "/public" do
-  use Rack::Static,
-    :urls => ["/images"],
-    :root => "public"
   run Rack::Directory.new("./public")
 end
