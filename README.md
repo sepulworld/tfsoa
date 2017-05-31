@@ -4,7 +4,7 @@ A dashboard that helps centralize and monitor disparate [Terraform states](https
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) 
 
-### Heroku example push quick start
+### Heroku example quick start
 
 Use Heroku Deploy button above and then run these API calls to put test data on your TFSOA deployment
 replacing app_name with the name you give your Heroku endpoint
