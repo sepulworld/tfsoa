@@ -9,11 +9,16 @@ A dashboard that helps centralize and monitor disparate [Terraform states](https
 Use Heroku Deploy button above and then run these API calls to put test data on your TFSOA deployment
 replacing app_name with the name you give your Heroku endpoint
 
+Post a Terraform state
 ```bash
 curl https://APP_NAME.herokuapp.com/tfsoa/add_tf_state/dpt/product2/service1/dev/ \
   -H "Content-Type: application/json" \
   -X \
   POST -d @test/fixtures/state1
+```
+
+Post an associated Terraform graph
+```bash
 cd test/fixtures/tf_asg/ 
 terraform graph \
   | curl -d @- https://APP_NAME.herokuapp.com/tfsoa/add_tf_graph/dpt/product2/service1/dev/
