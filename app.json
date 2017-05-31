@@ -11,9 +11,6 @@
       "url": "https://github.com/weibeld/heroku-buildpack-graphviz.git"
     },
     {
-      "url": "https://github.com/weibeld/heroku-buildpack-run.git"
-    },
-    {
       "url": "heroku/ruby"
     }
   ],
@@ -24,7 +21,6 @@
     }
   },
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate",
-    "postdeploy": "dot -c"
+    "postdeploy": "bundle exec rake db:migrate"
   }
 }
