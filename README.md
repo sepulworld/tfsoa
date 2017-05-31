@@ -2,7 +2,7 @@
 
 A dashboard that helps centralize and monitor disparate [Terraform states](https://www.terraform.io/docs/state/).
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy) 
 
 <img alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23921750/033ff2b2-08bd-11e7-9d78-632edc2c243b.png">
 
@@ -70,7 +70,7 @@ curl 127.0.0.1:9292/tfsoa/add_tf_state/team/product/service/environment/ \
   POST -d @.terraform/terraform.tfstate
 ```
 
-#### Example graph push
+#### Example graph push (must push graph to an existing saved state in tfsoa)
 
 ```bash
 terraform graph \
