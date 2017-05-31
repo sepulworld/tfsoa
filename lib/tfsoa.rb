@@ -133,14 +133,11 @@ class TerraformSOA < Sinatra::Base
   end
 
   get '/render_graph/:state_detail_id' do
+    content_type 'image/png'
     state_detail = StateDetail.find(params[:state_detail_id])
-
-    if !File.exist?("public/#{state_detail.tfstate.unique_tf_state}-#{state_detail.id}.png")
-      digraph = state_detail.digraph
-      File.open("/tmp/#{state_detail.tfstate.unique_tf_state}-#{state_detail.id}.dot", 'w') { |file| file.write(digraph) }
-      `dot -Tpng /tmp/#{state_detail.tfstate.unique_tf_state}-#{state_detail.id}.dot -o public/#{state_detail.tfstate.unique_tf_state}-#{state_detail.id}.png`
-    end
-    redirect "/public/#{state_detail.tfstate.unique_tf_state}-#{state_detail.id}.png"
+    digraph = state_detail.digraph
+    File.open("/tmp/#{state_detail.tfstate.unique_tf_state}-#{state_detail.id}.dot", 'w') { |file| file.write(digraph) }
+    `dot -Tpng /tmp/#{state_detail.tfstate.unique_tf_state}-#{state_detail.id}.dot`
   end
 
   get '/changeset/:old_id/:new_id' do

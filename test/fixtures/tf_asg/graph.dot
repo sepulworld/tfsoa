@@ -1,0 +1,37 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_autoscaling_group.asg" [label = "aws_autoscaling_group.asg", shape = "box"]
+		"[root] aws_launch_configuration.lc" [label = "aws_launch_configuration.lc", shape = "box"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] aws_autoscaling_group.asg" -> "[root] aws_launch_configuration.lc"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.asg_instances"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.asg_max_instances"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.asg_min_instances"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.asg_wait_for_capacity_timeout"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.availability_zones"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.environment"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.health_check_grace_period"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.health_check_type"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.load_balancer_names"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.name"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.team"
+		"[root] aws_autoscaling_group.asg" -> "[root] var.vpc_zone_subnets"
+		"[root] aws_launch_configuration.lc" -> "[root] provider.aws"
+		"[root] aws_launch_configuration.lc" -> "[root] var.ami"
+		"[root] aws_launch_configuration.lc" -> "[root] var.associate_public_ip"
+		"[root] aws_launch_configuration.lc" -> "[root] var.instance_profile"
+		"[root] aws_launch_configuration.lc" -> "[root] var.instance_type"
+		"[root] aws_launch_configuration.lc" -> "[root] var.key_name"
+		"[root] aws_launch_configuration.lc" -> "[root] var.security_group"
+		"[root] aws_launch_configuration.lc" -> "[root] var.user_data"
+		"[root] output.asg_id" -> "[root] aws_autoscaling_group.asg"
+		"[root] output.asg_name" -> "[root] aws_autoscaling_group.asg"
+		"[root] output.lc_id" -> "[root] aws_launch_configuration.lc"
+		"[root] root" -> "[root] output.asg_id"
+		"[root] root" -> "[root] output.asg_name"
+		"[root] root" -> "[root] output.lc_id"
+		"[root] root" -> "[root] var.asg_wait_for_capacity"
+	}
+}

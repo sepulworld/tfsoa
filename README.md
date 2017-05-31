@@ -2,6 +2,8 @@
 
 A dashboard that helps centralize and monitor disparate [Terraform states](https://www.terraform.io/docs/state/).
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
 <img alt="TFSOA Screenshot" src="https://cloud.githubusercontent.com/assets/26415029/23921750/033ff2b2-08bd-11e7-9d78-632edc2c243b.png">
 
 ![Versioned states with environment and version markers](https://cloud.githubusercontent.com/assets/538171/24389114/03a1eaf4-1334-11e7-9a44-367f5d6233c2.jpg)
