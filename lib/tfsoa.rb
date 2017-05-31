@@ -35,7 +35,7 @@ class TerraformSOA < Sinatra::Base
   register Sinatra::ActiveRecordExtension
   set :database_file, "../config/database.yml"
   set :public_folder, 'public'
-  
+
   def extract_tf_version(state)
      state['terraform_version']
   end
