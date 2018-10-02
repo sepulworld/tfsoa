@@ -32,7 +32,7 @@ GEM
     method_source (0.8.2)
     minitest (5.10.1)
     multi_json (1.12.1)
-    mysql2 (0.4.5)
+    mysql2 (0.4.10)
     pg (0.20.0)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -119,7 +119,7 @@ DEPENDENCIES
   activerecord (~> 5.0, >= 5.0.1)
   awesome_print
   json-compare
-  mysql2
+  mysql2 (~> 0.4.10)
   pg
   pry
   puma
@@ -135,4 +135,4 @@ DEPENDENCIES
   tux
 
 BUNDLED WITH
-   1.15.0
+   1.16.2
